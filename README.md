@@ -14,13 +14,17 @@ This section shoud contain list of project's authors as follows:
 1. Лимар Борис
 2. Богдан Калинюк
 3. Цибульняк Катерина
+
+
+# UML-diagram #
+
+[UML] http://cs607131.vk.me/v607131273/6c4b/YPMCHAI2VNg.jpg
  
 #Code#
 
 import java.util.Vector;
 
 public class Analyzes extends Organs {
-
     public Vector  myOrgans;
 }
 
