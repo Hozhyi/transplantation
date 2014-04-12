@@ -1,8 +1,8 @@
-transplantation
+Organ transplantation
 ===============
 
 
-# Transplantation project #
+# Organ Transplantation project #
 
 ## Description ##
 Here goes a brief description of your project and ideas regarding it.
