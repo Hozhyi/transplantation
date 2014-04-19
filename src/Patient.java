@@ -24,35 +24,39 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 	@SuppressWarnings("unchecked")
 	public static void main (String args[]){
 		System.out.println("ќргани €к≥ Ї в на€вност≥:");
-		organs = (ArrayList<Organs>) deserData("organs");
+	    organs = (ArrayList<Organs>) deserData("organs");
 		
 		/*Organs organ = new Organs();
 	
 		organ.setName(JOptionPane.showInputDialog(null,"¬вед≥ть орган"));
 		organ.setBlood(JOptionPane.showInputDialog(null, "¬вед≥ть групу кров≥"));
+		organ.setPrice(JOptionPane.showInputDialog(null, "¬вед≥ть ц≥ну органа"));
 		organs.add(organ);*/
 	    int i=0;
 		for (Organs p: organs)
 			{   i++;
-				System.out.println(i + " "+ p.getName() +" "+ p.getBlood());
+				System.out.println(i + " "+ p.getName() +" "+ p.getBlood()+ " "+ p.getPrice());
 			}
 		 
 		
-		serData("organs",organs);
+	// serData("organs",organs);
 		System.out.println("ƒан≥ пац≥Їнта:");
 		analyzes = (ArrayList<Analyzes>) deserData("analyzes");
 		/*Analyzes analyz = new Analyzes();
 		
 		analyz.setOrganAnalyzes(JOptionPane.showInputDialog(null,"¬вед≥ть необх≥дний орган"));
 		analyz.setBloodAnalyzes(JOptionPane.showInputDialog(null, "¬ведите групу кров≥ пац≥Їнта"));
+		analyz.setMinPrice(JOptionPane.showInputDialog(null, "¬вед≥ть м≥н≥мальну ц≥ну за орган"));
+		analyz.setMaxPrice(JOptionPane.showInputDialog(null, "¬ведите  максимальну ц≥ну за орган"));
+		
 	    analyzes.add(analyz);*/
 		int k=0;
 		for (Analyzes m: analyzes)
 			{    
-				System.out.println( " "+ m.getOrganAnalyzes() +" "+ m.getBloodAnalyzes());
+				System.out.println( " "+ m.getOrganAnalyzes() +" "+ m.getBloodAnalyzes() +" "+ m.getMinPrice()+" "+ m.getMaxPrice());
 			}
-	serData("analyzes",analyzes);
-	}
+		//serData("analyzes",analyzes);
+		}
 
 
 	

@@ -15,6 +15,7 @@ public class Organs implements Serializable  {
 	
 	private String name;
 	private String Blood;
+	private String Price;
 	public String getBlood() {
 		return Blood;
 	}
@@ -26,6 +27,12 @@ public class Organs implements Serializable  {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPrice() {
+		return Price;
+	}
+	public void setPrice(String price) {
+		Price = price;
 	}
 
 
