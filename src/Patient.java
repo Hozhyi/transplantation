@@ -25,7 +25,7 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 	public static void main (String args[]){
 		System.out.println("Органи які є в наявності:");
 		organs = (ArrayList<Organs>) deserData("organs");
-		//System.out.println(livers.size());
+		
 		/*Organs organ = new Organs();
 	
 		organ.setName(JOptionPane.showInputDialog(null,"Введіть орган"));
@@ -36,9 +36,9 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 			{   i++;
 				System.out.println(i + " "+ p.getName() +" "+ p.getBlood());
 			}
-		//System.out.println(livers.size()); 
+		 
 		
-		//serData("organs",organs);
+		serData("organs",organs);
 		System.out.println("Дані пацієнта:");
 		analyzes = (ArrayList<Analyzes>) deserData("analyzes");
 		/*Analyzes analyz = new Analyzes();
@@ -51,7 +51,7 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 			{    
 				System.out.println( " "+ m.getOrganAnalyzes() +" "+ m.getBloodAnalyzes());
 			}
-	//	serData("analyzes",analyzes);
+	serData("analyzes",analyzes);
 	}
 
 
