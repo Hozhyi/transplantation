@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-
 import javax.swing.JOptionPane;
 
 public class Analyzes extends Organs {
