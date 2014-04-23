@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.io.IOException;
-import javax.swing.JOptionPane;
-import java.io.Serializable;
-
-public class Organs implements Serializable  {
+public class Organs   {
 	
 	
 	private String name;
