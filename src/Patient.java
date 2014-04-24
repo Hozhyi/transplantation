@@ -6,16 +6,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Patient {
 
-  /*  public Vector  myQueue of organs;
-    public Vector  myQueue of organs;
-    public Vector  myOperations;*/
 	
 private static ArrayList<Organs> organs = new ArrayList<Organs>();
 private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
@@ -23,14 +19,14 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 	
 	@SuppressWarnings("unchecked")
 	public static void main (String args[]){
-		System.out.println("Органи які є в наявності:");
+		System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
 	    organs = (ArrayList<Organs>) deserData("organs");
 		
 		/*Organs organ = new Organs();
 	
-		organ.setName(JOptionPane.showInputDialog(null,"Введіть орган"));
-		organ.setBlood(JOptionPane.showInputDialog(null, "Введіть групу крові"));
-		organ.setPrice(JOptionPane.showInputDialog(null, "Введіть ціну органа"));
+		organ.setName(JOptionPane.showInputDialog(null,"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"));
+		organ.setBlood(JOptionPane.showInputDialog(null, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"));
+		organ.setPrice(JOptionPane.showInputDialog(null, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"));
 		organs.add(organ);*/
 	    int i=0;
 		for (Organs p: organs)
@@ -40,14 +36,14 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 		 
 		
 	// serData("organs",organs);
-		System.out.println("Дані пацієнта:");
+		System.out.println("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
 		analyzes = (ArrayList<Analyzes>) deserData("analyzes");
 		/*Analyzes analyz = new Analyzes();
 		
-		analyz.setOrganAnalyzes(JOptionPane.showInputDialog(null,"Введіть необхідний орган"));
-		analyz.setBloodAnalyzes(JOptionPane.showInputDialog(null, "Введите групу крові пацієнта"));
-		analyz.setMinPrice(JOptionPane.showInputDialog(null, "Введіть мінімальну ціну за орган"));
-		analyz.setMaxPrice(JOptionPane.showInputDialog(null, "Введите  максимальну ціну за орган"));
+		analyz.setOrganAnalyzes(JOptionPane.showInputDialog(null,"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"));
+		analyz.setBloodAnalyzes(JOptionPane.showInputDialog(null, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
+		analyz.setMinPrice(JOptionPane.showInputDialog(null, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"));
+		analyz.setMaxPrice(JOptionPane.showInputDialog(null, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"));
 		
 	    analyzes.add(analyz);*/
 		int k=0;
@@ -71,11 +67,11 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 			
 			}
 		catch (FileNotFoundException e) {
-			System.out.println("Файл не найден1");
+			System.out.println("пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ1");
 			System.exit(1);
 		
    		} catch (IOException e) {
-	System.out.println("Ошибка ввода");
+	System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	System.exit(2);		
 	}
 	}
@@ -88,7 +84,7 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 			try {
 				retObject = in.readObject();
 			} catch (ClassNotFoundException e) {
-				System.out.println("Класс не найден");
+				System.out.println("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 				System.exit(3);
 			}
 			fileIn.close();
@@ -96,11 +92,11 @@ private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
 			
 			}
 		catch (FileNotFoundException e) {
-			System.out.println("Файл не найден");
+			System.out.println("пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 			System.exit(1);
 		
    		} catch (IOException e) {
-	System.out.println("Ошибка вывода");
+	System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	System.exit(2);		
 	}
 	return retObject ;	
