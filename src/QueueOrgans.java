@@ -1,3 +1,4 @@
-public class QueueOrgans extends Organs implements Queue{
+public class QueueOrgans extends Organs implements Queue {
 	
-	}
+	
+}

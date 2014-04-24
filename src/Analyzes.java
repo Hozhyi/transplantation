@@ -1,34 +1,34 @@
+import java.io.Serializable;
 
-public class Analyzes extends Organs {
-    
-	private String OrganAnalyzes;
-	private String BloodAnalyzes;
-	private String MinPrice;
-	private String MaxPrice;
-	public String getOrganAnalyzes() {
-		return OrganAnalyzes;
-	}
-	public void setOrganAnalyzes(String organAnalyzes) {
-		OrganAnalyzes = organAnalyzes;
-	}
-	public String getBloodAnalyzes() {
-		return BloodAnalyzes;
-	}
-	public void setBloodAnalyzes(String bloodAnalyzes) {
-		BloodAnalyzes = bloodAnalyzes;
-	}
-	public String getMinPrice() {
-		return MinPrice;
-	}
-	public void setMinPrice(String minPrice) {
-		MinPrice = minPrice;
-	}
-	public String getMaxPrice() {
-		return MaxPrice;
-	}
-	public void setMaxPrice(String maxPrice) {
-		MaxPrice = maxPrice;
-	}
+public class Analyzes extends Organs implements Serializable{
 	
+		private String AnalyzOrganName;
+		private String AnalyzBlood;
+		private String AnalyzMinPrice;
+		private String AnalyzMaxPrice;
+		public String getAnalyzOrganName() {
+			return AnalyzOrganName;
+		}
+		public void setAnalyzOrganName(String analyzOrganName) {
+			AnalyzOrganName = analyzOrganName;
+		}
+		public String getAnalyzMinPrice() {
+			return AnalyzMinPrice;
+		}
+		public String setAnalyzMinPrice(String analyzMinPrice) {
+			return AnalyzMinPrice = analyzMinPrice;
+		}
+		public String getAnalyzMaxPrice() {
+			return AnalyzMaxPrice;
+		}
+		public String setAnalyzMaxPrice(String analyzMaxPrice) {
+			return AnalyzMaxPrice = analyzMaxPrice;
+		}
+		public String getAnalyzBlood() {
+			return AnalyzBlood;
+		}
+		public void setAnalyzBlood(String analyzBlood) {
+			AnalyzBlood = analyzBlood;
+		}
 
-}
+	}
