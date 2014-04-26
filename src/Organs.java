@@ -1,3 +1,4 @@
+
 import java.io.Serializable;
 
 
@@ -6,16 +7,14 @@ import java.util.Comparator;
 import javax.swing.JOptionPane;
 
 
-
 public class Organs implements Serializable {
 
-	
-	
         private String OrganId;
 		private String OrganName;
 		private String OrganPrice;
 		private String OrganBlood;
-
+		private String OrganHLA;
+		
 		public String getOrganBlood() {
 			return OrganBlood;
 		}
@@ -40,8 +39,6 @@ public class Organs implements Serializable {
 			return OrganPrice = organPrice;
 		}
 
-		
-
 		public String getOrganId() {
 			return OrganId;
 		}
@@ -51,6 +48,14 @@ public class Organs implements Serializable {
 		}
 
 
+		public String getOrganHLA() {
+			return OrganHLA;
+		}
+
+		public String setOrganHLA(String organHLA) {
+			return OrganHLA = organHLA;
+		}
+
 
 		public static class SortByPrice implements Comparator<Organs> {
 			 
@@ -59,6 +64,8 @@ public class Organs implements Serializable {
 			}
 	 
 		}
+		
+		
 	
 		
 	}

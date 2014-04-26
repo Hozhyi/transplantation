@@ -1,6 +1,6 @@
-import java.util.Vector;
 
-public class Operations extends Queue {
+
+public class Operations implements Queue {
 
    
 

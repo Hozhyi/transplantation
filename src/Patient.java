@@ -5,68 +5,123 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-
-public class Patient {
+public class Patient extends JFrame {
+	
 	private static ArrayList<Organs> organs = new ArrayList<Organs>();
 	private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
+	private static ArrayList<Patient> patients = new ArrayList<Patient>();
+
+	
+	private String PatientId;
+	private String PatientName;
+	private String PatientSurname;
+	
+	private static String surName;
 
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
-	
-		System.out.println("Available organs:");
-		organs = (ArrayList<Organs>) deserData("organs");
+	public static void Organs()
+	{
+			System.out.println("List of patients");
+			patients = (ArrayList<Patient>) deserData("patients");
+		  
+		   /*Patient  patients1 = new Patient();
+		    Integer.parseInt(patients1.setPatientId(JOptionPane.showInputDialog(null, "¬вед≥ть номер пац≥Їнта ")));
+	    	patients1.setPatientName(JOptionPane.showInputDialog(null, "¬вед≥ть ≤м'€ пац≥Їнта "));
+			patients1.setPatientSurname(JOptionPane.showInputDialog(null, "¬вед≥ть ѕр≥звище пац≥Їнта"));
+			patients.add(patients1);	 */
+			
+			for (Patient p : patients ) 
+				{
+					System.out.println(p.getPatientId()+". " + p.getPatientName()+" "+p.getPatientSurname() );			
+				}
+		  
+			//serData("patients",patients);
+			
+			 System.out.println("Choose your patient , enter Surname in textfield");
+			 Scanner sc = new Scanner(System.in);
+			 
+			 
+			 surName=sc.nextLine();
+			
+			 analyzes = (ArrayList<Analyzes>) deserData("analyzes");
+			 
+			 	for (Patient p:patients)
+			 	{
+			 			for (Analyzes k: analyzes)
+			 			{
+			 					if (surName.equals(p.getPatientSurname()) && k.getAnalyzOrganPatientSurname().equals(p.getPatientSurname())   )
+			 					{
+			 							System.out.println(k.getAnalyzOrganPatientSurname() +  " " + k.getAnalyzOrganName() + " " + k.getAnalyzBlood() + " " + k.getAnalyzMinPrice() + " " + k.getAnalyzMaxPrice());
+			 					} 
+			 			}
+			 	}
+			
 		
-		   /* Organs  organ = new Organs();
+		
+			System.out.println("Available organs:");
+			System.out.println("Id   Organ Blood  Price HLA");
+			organs = (ArrayList<Organs>) deserData("organs");
+		
+		    /*Organs  organ = new Organs();
 		    Integer.parseInt(organ.setOrganId(JOptionPane.showInputDialog(null, "Ќомер органу ")));
 	    	organ.setOrganName(JOptionPane.showInputDialog(null, "¬вед≥ть орган "));
 			organ.setOrganBlood(JOptionPane.showInputDialog(null, "¬вед≥ть групу кров≥"));
 			Integer.parseInt(organ.setOrganPrice(JOptionPane.showInputDialog(null,"¬вед≥ть ц≥ну")));
-			
-			organs.add(organ);	 */
-			int i=0;
-			for (Organs p : organs) {
-				i++;
-				System.out.println(p.getOrganId()+". " + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice());
-				
-				
-			}
+			Integer.parseInt(organ.setOrganHLA(JOptionPane.showInputDialog(null,"¬вед≥ть HLA")));
+			organs.add(organ);	*/
+		
+			for (Organs p : organs) 
+				{
+					System.out.println(p.getOrganId()+".   " + p.getOrganName()+" "+p.getOrganBlood() + "   "+ p.getOrganPrice() + "    " + p.getOrganHLA());	
+				}
 
-			serData("organs",organs);
-			
-		System.out.println("Analyses of patient:");
+			 //serData("organs",organs);
+		
 			analyzes = (ArrayList<Analyzes>) deserData("analyzes");
 		
-		   /*  Analyzes analyz = new Analyzes();	 
+			/*Analyzes analyz = new Analyzes();	 
+		    analyz.setAnalyzOrganPatientSurname(JOptionPane.showInputDialog(null, "¬вед≥ть пр≥звище пац≥Їнта"));
 	    	analyz.setAnalyzOrganName(JOptionPane.showInputDialog(null, "¬вед≥ть необх≥дний дл€ пац≥Їнта орган "));
 	    	analyz.setAnalyzBlood(JOptionPane.showInputDialog(null, "¬вед≥ть групу кров≥ пац≥Їнта"));
 	    	Integer.parseInt(analyz.setAnalyzMinPrice(JOptionPane.showInputDialog(null, "¬вед≥ть м≥н≥мальну ц≥ну органа")));
 	    	Integer.parseInt(analyz.setAnalyzMaxPrice(JOptionPane.showInputDialog(null, "¬вед≥ть максимальну ц≥ну органа")));
-	    	
-	    	analyzes.add(analyz);*/
-
-			for (Analyzes m : analyzes) {
+	
+	    	analyzes.add(analyz);
 			
-				System.out.println(m.getAnalyzOrganName()+" "+m.getAnalyzBlood() + " "+ m.getAnalyzMinPrice()+" " + m.getAnalyzMaxPrice());
-				}
-		     
-			System.out.println("ƒл€ пац≥Їнта п≥д≥йдуть так≥ органи:");
-			Collections.sort(organs, new Organs.SortByPrice());
+			 serData("analyzes",analyzes);*/
+		    
+			System.out.println("Organs for a patient:");
+			
+			//Collections.sort(organs, new Organs.SortByPrice());
 			goodOrgans();
 			
-		   // serData("analyzes",analyzes);
+			try {
+				ObjectInputStream in = new ObjectInputStream(new FileInputStream("queueorgans.txt"));
+				try {
+					in.readObject();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				in.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
 			
-			
-			
-			
-	}
+}
 
-	
 	
 	private static Object deserData(String file_name) {
 		 Object retObject=null;
@@ -77,19 +132,19 @@ public class Patient {
 			try {
 				retObject = in.readObject();
 			} catch (ClassNotFoundException e) {
-				System.out.println(" ласс не найден");
+				System.out.println("Class not found");
 			}
 			fileIn.close();
 			in.close();
 			} 
 		catch (FileNotFoundException e) {
 			
-			System.out.println("‘айл не найден");
+			System.out.println("File not found");
 			System.exit(1);
 		}
 		catch (IOException e) {
 		
-			System.out.println("ќшибка ввода/вывода");
+			System.out.println("Errors input/output");
 			System.exit(2);
 		}
 		return retObject;
@@ -109,22 +164,114 @@ public class Patient {
 			} 
 		catch (FileNotFoundException e) {
 			
-			System.out.println("‘айл не найден");
+			System.out.println("File not found");
 			System.exit(1);
 		}
 		catch (IOException e) {
 			
-			System.out.println("ќшибка ввода/вывода");
+			System.out.println("Errors input/output");
 			System.exit(2);
 		}
 	}
 	
-	public static void goodOrgans()
+	@SuppressWarnings("unchecked")
+	public static void goodOrgans() 
 	{
-		int k=0, i=0,  y=0;
+		int i, id=0;
+	
 		
+		System.out.println("Enter Organ ID ");
 		Scanner sc = new Scanner(System.in);
-		for(Analyzes m : analyzes)
+		
+		do { 
+			try{
+				
+			id=sc.nextInt();
+					
+			} catch (InputMismatchException e){System.out.println("¬вед≥ть корректн≥ дан≥"); break;}
+			i=0;
+				
+					for (Analyzes m : analyzes)
+					{
+						for (Organs p : organs) 
+								{ 
+						
+							if(Integer.parseInt(p.getOrganId())==id)
+								{   
+									if((m.getAnalyzOrganName().equals(p.getOrganName()) &&  (surName.equals(m.getAnalyzOrganPatientSurname()))))
+									{  						
+																					 
+									 	System.out.println(p.getOrganId()+ ". " + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice() + " " + p.getOrganHLA());
+									 	
+											try {
+											ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("queueorgans.txt"));
+											out.writeObject(p.getOrganName());
+											out.writeObject(p.getOrganBlood());
+											out.writeObject(p.getOrganPrice());
+											out.writeObject(p.getOrganHLA());
+											out.close();
+										} catch (FileNotFoundException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+											i++;  
+										}
+										
+										
+									}
+								}
+								}
+						
+		} while (i==0);
+				
+			
+		
+		
+		
+		
+	}
+
+	
+
+	
+	
+	
+
+	public String getPatientId() {
+		return PatientId;
+	}
+
+
+	public String setPatientId(String patientId) {
+		return PatientId = patientId;
+	}
+
+
+	public String getPatientName() {
+		return PatientName;
+	}
+
+
+	public void setPatientName(String patientName) {
+		PatientName = patientName;
+	}
+
+
+	public String getPatientSurname() {
+		return PatientSurname;
+	}
+
+
+	public void setPatientSurname(String patientSurname) {
+		PatientSurname = patientSurname;
+	}
+
+	
+		
+		/*for(Analyzes m : analyzes)
 			{ 
 			for(Organs p : organs)
 				{
@@ -135,7 +282,6 @@ public class Patient {
 									if (p.getOrganName().equals(m.getAnalyzOrganName()))
 									{  
 										i++; 
-									
 										System.out.println(p.getOrganId()+ ". " + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice());
 										k++;
 										
@@ -145,7 +291,7 @@ public class Patient {
 										if(Integer.parseInt(p.getOrganId())==y)
 										{
 											System.out.println(p.getOrganId() + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice());
-										}	*/
+										}	
 										
 										
 									}
@@ -158,21 +304,8 @@ public class Patient {
 				if (k==0)
 					{
 						System.out.println("ЌемаЇ жодного органа. ѕац≥Їнта переведено в чергу");
-					}	
-				
-				
-				
-			
-			}
+					}				
+			}*/
 		
-		
-		
-		
-		
-	}
-	
-
- 
-	
 
 }

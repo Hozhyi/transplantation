@@ -1,11 +1,14 @@
+
 import java.io.Serializable;
 
 public class Analyzes extends Organs implements Serializable{
-	
+	    private String AnalyzOrganPatientSurname;
 		private String AnalyzOrganName;
 		private String AnalyzBlood;
 		private String AnalyzMinPrice;
 		private String AnalyzMaxPrice;
+		
+		
 		public String getAnalyzOrganName() {
 			return AnalyzOrganName;
 		}
@@ -30,5 +33,13 @@ public class Analyzes extends Organs implements Serializable{
 		public void setAnalyzBlood(String analyzBlood) {
 			AnalyzBlood = analyzBlood;
 		}
+		public String getAnalyzOrganPatientSurname() {
+			return AnalyzOrganPatientSurname;
+		}
+		public void setAnalyzOrganPatientSurname(
+				String analyzOrganPatientSurname) {
+			AnalyzOrganPatientSurname = analyzOrganPatientSurname;
+		}
+		
 
 	}
