@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class Patient extends JFrame {
+public class Patient extends JFrame  {
 	
 	private static ArrayList<Organs> organs = new ArrayList<Organs>();
 	private static ArrayList<Analyzes> analyzes = new ArrayList<Analyzes>();
@@ -26,8 +26,8 @@ public class Patient extends JFrame {
 	private static String surName;
 
 	@SuppressWarnings("unchecked")
-	public static void Organs()
-	{
+	public static  void Organs() 
+	{		int i=0;
 			System.out.println("List of patients");
 			patients = (ArrayList<Patient>) deserData("patients");
 		  
@@ -35,7 +35,7 @@ public class Patient extends JFrame {
 		    Integer.parseInt(patients1.setPatientId(JOptionPane.showInputDialog(null, "¬вед≥ть номер пац≥Їнта ")));
 	    	patients1.setPatientName(JOptionPane.showInputDialog(null, "¬вед≥ть ≤м'€ пац≥Їнта "));
 			patients1.setPatientSurname(JOptionPane.showInputDialog(null, "¬вед≥ть ѕр≥звище пац≥Їнта"));
-			patients.add(patients1);	 */
+			patients.add(patients1);	*/ 
 			
 			for (Patient p : patients ) 
 				{
@@ -44,27 +44,31 @@ public class Patient extends JFrame {
 		  
 			//serData("patients",patients);
 			
-			 System.out.println("Choose your patient , enter Surname in textfield");
+			 System.out.println("Choose your patient , enter Surname in textfield(Enter correct data, because you will be must enter it again)");
 			 Scanner sc = new Scanner(System.in);
-			 
-			 
-			 surName=sc.nextLine();
-			
 			 analyzes = (ArrayList<Analyzes>) deserData("analyzes");
-			 
-			 	for (Patient p:patients)
+		
+			 do
+			 {
+				 i=0;
+				 surName=sc.nextLine();
+				for (Patient p:patients)
 			 	{
 			 			for (Analyzes k: analyzes)
 			 			{
-			 					if (surName.equals(p.getPatientSurname()) && k.getAnalyzOrganPatientSurname().equals(p.getPatientSurname())   )
-			 					{
-			 							System.out.println(k.getAnalyzOrganPatientSurname() +  " " + k.getAnalyzOrganName() + " " + k.getAnalyzBlood() + " " + k.getAnalyzMinPrice() + " " + k.getAnalyzMaxPrice());
-			 					} 
+			 					if (surName.equals(p.getPatientSurname()) && k.getAnalyzOrganPatientSurname().equals(p.getPatientSurname()) ) 
+			 					 {
+			 						System.out.println(k.getAnalyzOrganPatientSurname() +  " " + k.getAnalyzOrganName() + " " + k.getAnalyzBlood() + " " + k.getAnalyzMinPrice() + " " + k.getAnalyzMaxPrice());
+			 						i++;
+			 					 }
+			 					
 			 			}
-			 	}
-			
-		
-		
+			 			
+			 		
+			 	} 
+				
+			 } while (i==0)	; 	
+			 
 			System.out.println("Available organs:");
 			System.out.println("Id   Organ Blood  Price HLA");
 			organs = (ArrayList<Organs>) deserData("organs");
@@ -101,25 +105,6 @@ public class Patient extends JFrame {
 			
 			//Collections.sort(organs, new Organs.SortByPrice());
 			goodOrgans();
-			
-			try {
-				ObjectInputStream in = new ObjectInputStream(new FileInputStream("queueorgans.txt"));
-				try {
-					in.readObject();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				in.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		   
-			
 }
 
 	
@@ -177,66 +162,98 @@ public class Patient extends JFrame {
 	@SuppressWarnings("unchecked")
 	public static void goodOrgans() 
 	{
-		int i, id=0;
+		int i = 0, id=0;
 	
-		
-		System.out.println("Enter Organ ID ");
+		System.out.println("Enter Organ ID (Enter 0 if you didn't like(not find) your organ) ");
 		Scanner sc = new Scanner(System.in);
 		
 		do { 
 			try{
-				
-			id=sc.nextInt();
+				id=sc.nextInt();	
+				} catch (InputMismatchException e){
+						System.out.println("Enter correct data"); 
+						break;
+						}
 					
-			} catch (InputMismatchException e){System.out.println("¬вед≥ть корректн≥ дан≥"); break;}
-			i=0;
-				
-					for (Analyzes m : analyzes)
-					{
-						for (Organs p : organs) 
-								{ 
+						if (id == 0) {
+							System.out.println("Patient in queue for his organ");  
+									i=0;
+									for (Patient p:patients)
+										{
+											for (Analyzes k: analyzes)
+												{
+													if (surName.equals(p.getPatientSurname()) && k.getAnalyzOrganPatientSurname().equals(p.getPatientSurname()) ) 
+														{
+															System.out.println(k.getAnalyzOrganPatientSurname() +  " " + k.getAnalyzOrganName() + " " + k.getAnalyzBlood() + " " + k.getAnalyzMinPrice() + " " + k.getAnalyzMaxPrice());
+	 						
+															try {
+																ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("queuepatients.txt"));
+																out.writeObject(k.getAnalyzOrganPatientSurname());
+																out.writeObject(k.getAnalyzOrganName());
+																out.writeObject(k.getAnalyzBlood());
+																out.writeObject(k.getAnalyzMinPrice());
+																out.writeObject(k.getAnalyzMaxPrice());
+																out.close();
+																} catch (FileNotFoundException e) {
+																	// TODO Auto-generated catch block
+																	e.printStackTrace();
+																} catch (IOException e) {
+																	// TODO Auto-generated catch block
+																	e.printStackTrace();
+																}
+															i++;
+														}
+	 					
+												}
+	 			
+	 		
+										}
+								}
 						
-							if(Integer.parseInt(p.getOrganId())==id)
-								{   
-									if((m.getAnalyzOrganName().equals(p.getOrganName()) &&  (surName.equals(m.getAnalyzOrganPatientSurname()))))
-									{  						
-																					 
-									 	System.out.println(p.getOrganId()+ ". " + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice() + " " + p.getOrganHLA());
-									 	
-											try {
-											ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("queueorgans.txt"));
-											out.writeObject(p.getOrganName());
-											out.writeObject(p.getOrganBlood());
-											out.writeObject(p.getOrganPrice());
-											out.writeObject(p.getOrganHLA());
-											out.close();
-										} catch (FileNotFoundException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-											i++;  
-										}
-										
-										
-									}
+						for (Analyzes m : analyzes)
+							{
+								for (Organs p : organs) 
+									{ 
+										if(Integer.parseInt(p.getOrganId())==id)
+											{   
+												if((m.getAnalyzOrganName().equals(p.getOrganName()) &&  (surName.equals(m.getAnalyzOrganPatientSurname()))))
+													{  																	 
+													 	System.out.println(p.getOrganId()+ ". " + p.getOrganName()+" "+p.getOrganBlood() + " "+ p.getOrganPrice() + " " + p.getOrganHLA());
+															try {
+															ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("queueorgans.txt"));
+															out.writeObject(p.getOrganName());
+															out.writeObject(p.getOrganBlood());
+															out.writeObject(p.getOrganPrice());
+															out.writeObject(p.getOrganHLA());
+															out.close();
+															} catch (FileNotFoundException e) {
+																// TODO Auto-generated catch block
+																e.printStackTrace();
+															} catch (IOException e) {
+																// TODO Auto-generated catch block
+																e.printStackTrace();
+															}
+																i++;  
+													}
+														
+														
+											}
+											
+											   
 								}
-								}
+						}
+								
 						
 		} while (i==0);
-				
-			
-		
-		
-		
 		
 	}
 
 	
 
-	
+	public static void Error() 
+	{ 
+		
+	}
 	
 	
 
